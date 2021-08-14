@@ -9,9 +9,6 @@ export default {
         getExportChartWidth(chartType) {
             let width = 0;
             switch (chartType) {
-                case 'bar':
-                    width = 700;
-                    break
                 case 'column':
                     width = 700;
                     break;
