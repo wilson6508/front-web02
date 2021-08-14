@@ -1,3 +1,3 @@
-module.exports = {
-    publicPath: '/front-web02/'
-}
+// module.exports = {
+//     publicPath: '/front-web02/'
+// }
