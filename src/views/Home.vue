@@ -3,7 +3,7 @@
     <b-navbar type="dark" variant="dark">
       <b-navbar-nav>
         <b-nav-item href="/PieChart">圓餅圖</b-nav-item>
-        <b-nav-item href="#">Home</b-nav-item>
+        <b-nav-item href="#">長條圖</b-nav-item>
         <b-nav-item href="#">Home</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
