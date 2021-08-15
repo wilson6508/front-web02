@@ -28,15 +28,15 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  document.title = to.meta.title;
-  next();
-  // const goToHome = ["/", "*"];
-  // if (goToHome.includes(to.path)) {
-  //   next("/front-web02");
-  // } else {
+// router.beforeEach((to, from, next) => {
+//   document.title = to.meta.title;
+//   next();
+//   // const goToHome = ["/", "*"];
+//   // if (goToHome.includes(to.path)) {
+//   //   next("/front-web02");
+//   // } else {
 
-  // }
-});
+//   // }
+// });
 
 export default router;
