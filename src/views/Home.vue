@@ -2,14 +2,13 @@
   <div style="background-color: #c4d79b">
     <b-navbar type="dark" variant="dark">
       <b-navbar-nav>
-        <b-nav-item href="/PieChart">圓餅圖</b-nav-item>
-        <b-nav-item href="#">長條圖</b-nav-item>
-        <b-nav-item href="#">Home</b-nav-item>
+        <b-nav-item :href="pieURL">圓餅圖</b-nav-item>
+        <b-nav-item href="#">長條圖(橫)</b-nav-item>
+        <b-nav-item href="#">長條圖(直)</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
     <div style="padding: 50px">
       <router-view />
-      <!-- <PieChart></PieChart> -->
     </div>
   </div>
 </template>
@@ -21,11 +20,24 @@ html {
 </style>
 
 <script>
-// import PieChart from "@/components/PieChart.vue";
-
 export default {
-  components: {
-    // PieChart,
+  mounted() {
+    // this.pieURL = this.normalURL + this.pieURL;
+    this.initializeURL();
+    this.$router.push(this.pieURL);
+  },
+  data() {
+    return {
+      normalURL: "/front-web02",
+      pieURL: "/PieChart",
+    };
+  },
+  methods: {
+    initializeURL() {
+      if (process.env.VUE_APP_PENV === "normal") {
+        this.pieURL = this.normalURL + this.pieURL;
+      }
+    },
   },
 };
 </script>
