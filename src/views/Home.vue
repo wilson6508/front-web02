@@ -8,8 +8,8 @@
       </b-navbar-nav>
     </b-navbar>
     <div style="padding: 50px">
-      <!-- <router-view /> -->
-      <PieChart></PieChart>
+      <router-view />
+      <!-- <PieChart></PieChart> -->
     </div>
   </div>
 </template>
@@ -21,11 +21,11 @@ html {
 </style>
 
 <script>
-import PieChart from "@/components/PieChart.vue";
+// import PieChart from "@/components/PieChart.vue";
 
 export default {
   components: {
-    PieChart,
+    // PieChart,
   },
 };
 </script>
