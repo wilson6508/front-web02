@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
-// import PieChart from "@/components/PieChart.vue";
 
 Vue.use(VueRouter);
 
@@ -10,16 +9,8 @@ const routes = [{
   name: "Home",
   component: Home,
   meta: {
-    title: "首頁",
-  },
-  // children: [{
-  //   path: "PieChart",
-  //   name: "PieChart",
-  //   component: PieChart,
-  //   meta: {
-  //     title: "圓餅圖",
-  //   },
-  // }, ],
+    title: "圖表"
+  }
 }, ];
 
 const router = new VueRouter({
@@ -28,15 +19,9 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   document.title = to.meta.title;
-//   next();
-//   // const goToHome = ["/", "*"];
-//   // if (goToHome.includes(to.path)) {
-//   //   next("/front-web02");
-//   // } else {
-
-//   // }
-// });
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
+});
 
 export default router;
