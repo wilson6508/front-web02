@@ -17,7 +17,7 @@ const routes = [{
     name: "PieChart",
     component: PieChart,
     meta: {
-      title: "測試HC",
+      title: "圓餅圖",
     },
   }, ],
 }, ];
