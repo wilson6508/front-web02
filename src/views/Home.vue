@@ -2,13 +2,13 @@
   <div style="background-color: #c4d79b">
     <b-navbar type="dark" variant="dark">
       <b-navbar-nav>
-        <b-nav-item :href="pieURL">圓餅圖</b-nav-item>
-        <b-nav-item href="#">長條圖(橫)</b-nav-item>
-        <b-nav-item href="#">長條圖(直)</b-nav-item>
+        <b-nav-item href="#" @click="change('PieChart')">圓餅圖</b-nav-item>
+        <b-nav-item href="#" @click="change('BarChart')">長條圖(橫)</b-nav-item>
+        <b-nav-item href="https://tw.yahoo.com/">長條圖(直)</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
     <div style="padding: 50px">
-      <router-view />
+      <component :is="currentComponent"></component>
     </div>
   </div>
 </template>
@@ -20,23 +20,22 @@ html {
 </style>
 
 <script>
+import PieChart from "@/components/PieChart";
+import BarChart from "@/components/BarChart";
+
 export default {
-  mounted() {
-    // this.pieURL = this.normalURL + this.pieURL;
-    this.initializeURL();
-    // this.$router.push("/PieChart");
+  components: {
+    PieChart,
+    BarChart,
   },
   data() {
     return {
-      normalURL: "/front-web02",
-      pieURL: "/PieChart",
+      currentComponent: PieChart,
     };
   },
   methods: {
-    initializeURL() {
-      if (process.env.VUE_APP_PENV === "normal") {
-        this.pieURL = this.normalURL + this.pieURL;
-      }
+    change(component) {
+      this.currentComponent = component;
     },
   },
 };

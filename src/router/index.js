@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
-import PieChart from "@/components/PieChart.vue";
+// import PieChart from "@/components/PieChart.vue";
 
 Vue.use(VueRouter);
 
@@ -12,14 +12,14 @@ const routes = [{
   meta: {
     title: "首頁",
   },
-  children: [{
-    path: "PieChart",
-    name: "PieChart",
-    component: PieChart,
-    meta: {
-      title: "圓餅圖",
-    },
-  }, ],
+  // children: [{
+  //   path: "PieChart",
+  //   name: "PieChart",
+  //   component: PieChart,
+  //   meta: {
+  //     title: "圓餅圖",
+  //   },
+  // }, ],
 }, ];
 
 const router = new VueRouter({
