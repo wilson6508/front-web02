@@ -24,7 +24,7 @@ export default {
   mounted() {
     // this.pieURL = this.normalURL + this.pieURL;
     this.initializeURL();
-    this.$router.push("/PieChart");
+    // this.$router.push("/PieChart");
   },
   data() {
     return {
