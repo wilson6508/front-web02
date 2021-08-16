@@ -4,6 +4,9 @@
       <b-navbar-nav>
         <b-nav-item href="#" @click="change('PieChart')">圓餅圖</b-nav-item>
         <b-nav-item href="#" @click="change('BarChart')">長條圖(橫)</b-nav-item>
+        <b-nav-item href="#" @click="change('ColumnChart')"
+          >長條圖(直)</b-nav-item
+        >
         <b-nav-item href="https://tw.yahoo.com/">長條圖(直)</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
@@ -22,11 +25,13 @@ html {
 <script>
 import PieChart from "@/components/PieChart";
 import BarChart from "@/components/BarChart";
+import ColumnChart from "@/components/ColumnChart";
 
 export default {
   components: {
     PieChart,
     BarChart,
+    ColumnChart,
   },
   data() {
     return {
