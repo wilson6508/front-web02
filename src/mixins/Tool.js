@@ -15,6 +15,9 @@ export default {
                 case 'pie':
                     width = 700;
                     break
+                    case 'line':
+                        width = 1400;
+                        break;
                 default:
                     width = 1400;
             }
