@@ -3,11 +3,11 @@
     <b-navbar type="dark" variant="dark">
       <b-navbar-nav>
         <b-nav-item href="#" @click="change('PieChart')">圓餅圖</b-nav-item>
-        <b-nav-item href="#" @click="change('BarChart')">長條圖(橫)</b-nav-item>
+        <!-- <b-nav-item href="#" @click="change('BarChart')">長條圖(橫)</b-nav-item> -->
         <b-nav-item href="#" @click="change('ColumnChart')"
           >長條圖(直)</b-nav-item
         >
-        <b-nav-item href="https://tw.yahoo.com/">長條圖(直)</b-nav-item>
+        <!-- <b-nav-item href="https://tw.yahoo.com/">長條圖(直)</b-nav-item> -->
       </b-navbar-nav>
     </b-navbar>
     <div style="padding: 50px">

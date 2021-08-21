@@ -1,41 +1,60 @@
 <template>
   <div>
-    <Highcharts :options="chartOptions"></Highcharts><br />
-    <b-card header="操作面板">
+    <b-container><Highcharts :options="displayChart"></Highcharts></b-container><br />
+    <b-container>
+    <b-card header="操作面板" style="overflow-x: auto">
+      <template #header>
+        <!-- {{ "操作面板" }} -->
       <b-row>
-        <b-col cols="1"></b-col>
-        <!-- <b-col cols="1" v-for="(item, index) in chartOptions.xAxis.categories" :key="index">
-          <b-form-input v-model="chartOptions.xAxis.categories[index]"></b-form-input>
-        </b-col> -->
-        <b-col cols="1" v-for="(item, index) in chartOptions.series" :key="index">
+        <b-col cols="2"><b-form-input v-model="chartOptions.title.text"></b-form-input></b-col>
+        <b-col cols="2"><b-form-input v-model="chartOptions.yAxis.title.text"></b-form-input></b-col>
+        <b-col cols="8" class="d-flex justify-content-end">
+        <b-button variant="primary" size="sm" @click="addItem()" style="margin-right: 10px;">新增1行</b-button>  
+        <b-button variant="danger" size="sm" @click="deleteItem()">刪除1行</b-button>
+        </b-col>
+        </b-row>
+      </template>
+      <template #footer>
+        <b-button variant="primary" size="sm" @click="addRow()" style="margin-right: 10px">新增1列</b-button>
+        <b-button variant="danger" size="sm" @click="deleteRow()">刪除1列</b-button>
+      </template>
+      <b-row>
+        <b-col cols="2"></b-col>
+        <b-col cols="10">
+          <b-container class="forBcontainer">
+            <div class="forXarray col-1" v-for="(item, index) in chartOptions.xAxis.categories" :key="index">
+              <b-form-input v-model="chartOptions.xAxis.categories[index]"></b-form-input>
+            </div>
+          </b-container>
+        </b-col>
+      </b-row>
+      <b-row v-for="(item, index) in chartOptions.series" :key="index">
+        <b-col cols="2">
           <b-form-input v-model="item.name"></b-form-input>
         </b-col>
-        <b-col cols="2"><b-button size="sm" style="margin-right: 10px" @click="addRow()">新增1行</b-button>
-          <b-button size="sm" @click="deleteRow()">刪除1行</b-button>
+        <b-col cols="10">
+          <b-container class="forBcontainer">
+            <div class="forXarray col-1" v-for="(value, i) in item.data" :key="i">
+              <b-form-input v-model.number="item.data[i]"></b-form-input>
+            </div>
+          </b-container>
         </b-col>
       </b-row>
-      <!-- <b-row v-for="(item, index) in chartOptions.series" :key="index"> -->
-        <b-row v-for="(value, i) in chartOptions.xAxis.categories" :key="i">
-        <b-col cols="1">
-          <!-- <b-form-input v-model="item.name"></b-form-input> -->
-          <b-form-input v-model="chartOptions.xAxis.categories[i]"></b-form-input>
-        </b-col>
-        <b-col cols="1" v-for="(item, index) in chartOptions.series" :key="index">
-          <b-form-input v-model.number="item.data[i]"></b-form-input>
-        </b-col>
-        <!-- <b-col cols="1" v-for="(value, i) in item.data" :key="i">
-          <b-form-input v-model.number="item.data[i]"></b-form-input>
-        </b-col> -->
-      </b-row><br>
-      <b-row>
-          <b-col cols="1"><b-button size="sm" @click="addItem()">新增1列</b-button></b-col>
-      </b-row><br>
-      <b-row>
-          <b-col cols="1"><b-button size="sm" @click="deleteItem()">刪除1列</b-button></b-col>
-      </b-row>
-      </b-card>
+    </b-card>
+    </b-container>
   </div>
 </template>
+
+<style scoped>
+.forBcontainer {
+  /* overflow-x: auto; */
+  white-space: nowrap;
+}
+.forXarray {
+  display: inline-block;
+  /* float: none; */
+}
+</style>
 
 <script>
 import { Chart } from "highcharts-vue";
@@ -47,6 +66,9 @@ export default {
   components: {
     Highcharts: Chart,
   },
+  mounted() {
+    this.processChart();
+  },
   data() {
     return {
       displayChart: {},
@@ -55,27 +77,26 @@ export default {
           type: "column",
         },
         title: {
-          text: "Monthly Average Rainfall",
+          text: "消費支出統計",
         },
-        subtitle: {
-          text: "Source: WorldClimate.com",
-        },
+        // subtitle: {
+        //   text: "Source: WorldClimate.com",
+        // },
         xAxis: {
-          categories: ["1月", "2月", "3月", "4月"],
+          categories: ["1月", "2月", "3月", "4月", "5月"],
           crosshair: true,
         },
         yAxis: {
           min: 0,
           title: {
-            text: "Rainfall (mm)",
+            text: "花費金額(元)",
           },
         },
         tooltip: {
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
           pointFormat:
             '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            '<td style="padding:0"><b>{point.y:.1f} 元</b></td></tr>',
           footerFormat: "</table>",
           shared: true,
           useHTML: true,
@@ -88,20 +109,20 @@ export default {
         },
         series: [
           {
-            name: "東京",
-            data: [49.9, 71.5, 106.4, 129.2],
+            name: "房租水電",
+            data: [10650, 11000, 10040, 12000, 9500],
           },
           {
-            name: "紐約",
-            data: [83.6, 78.8, 98.5, 93.4],
+            name: "伙食費",
+            data: [6000, 7500, 13550, 5200, 11000],
           },
           {
-            name: "倫敦",
-            data: [48.9, 38.8, 39.3, 41.4],
+            name: "帳單",
+            data: [4500, 17000, 850, 9000, 6215],
           },
           {
-            name: "柏林",
-            data: [42.4, 33.2, 34.5, 39.7],
+            name: "其它開銷",
+            data: [3400, 1200, 1200, 6500, 2500],
           },
         ],
       },
@@ -109,23 +130,30 @@ export default {
   },
   methods: {
     addItem() {
-      this.chartOptions.xAxis.categories.push("QQQ");
-      this.chartOptions.series.forEach(e => e.data.push(""));
+      const count = this.chartOptions.xAxis.categories.length;
+      this.chartOptions.xAxis.categories.push(`${count+1}月`);
+      this.chartOptions.series.forEach((e) => e.data.push(""));
     },
     deleteItem() {
       this.chartOptions.xAxis.categories.pop();
-      this.chartOptions.series.forEach(e => e.data.pop());
+      this.chartOptions.series.forEach((e) => e.data.pop());
     },
     addRow() {
-        this.chartOptions.series.push({name: "AAA", data:[]});
-        const length01 = this.chartOptions.series.length;
-        for (let i = 0 ; i < this.chartOptions.xAxis.categories.length ; i++) {
-            this.chartOptions.series[length01-1].data.push("");
-        }
+      const count = this.chartOptions.series.length;
+      this.chartOptions.series.push({ name: `項目${count+1}`, data: [] });
+      const length01 = this.chartOptions.series.length;
+      for (let i = 0; i < this.chartOptions.xAxis.categories.length; i++) {
+        this.chartOptions.series[length01 - 1].data.push("");
+      }
     },
     deleteRow() {
-        this.chartOptions.series.pop();
-    }
+      this.chartOptions.series.pop();
+    },
+    processChart() {
+      const chartType = this.chartOptions.chart.type;
+      const chartWidth = this.getExportChartWidth(chartType);
+      this.displayChart = this.getChart(this.chartOptions, chartWidth);
+    },
   },
 };
 </script>

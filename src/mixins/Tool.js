@@ -10,7 +10,7 @@ export default {
             let width = 0;
             switch (chartType) {
                 case 'column':
-                    width = 700;
+                    width = 1400;
                     break;
                 case 'pie':
                     width = 700;

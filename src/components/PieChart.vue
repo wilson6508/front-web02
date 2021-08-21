@@ -1,5 +1,6 @@
 <template>
   <div>
+    <b-container>
     <b-card header="點圖表右上下載">
       <b-row>
         <b-col cols="6">
@@ -40,6 +41,7 @@
         </b-col>
       </b-row>
     </b-card>
+    </b-container>
   </div>
 </template>
 
@@ -86,7 +88,7 @@ export default {
         },
         series: [
           {
-            name: "Brands",
+            name: "數值",
             colorByPoint: true,
             data: [],
           },
