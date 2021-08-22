@@ -115,10 +115,10 @@ export default {
         },
       ],
       items: [
-        { id: 1, name: "金融股", y: 15 },
-        { id: 2, name: "ABC123", y: 20 },
-        { id: 3, name: "車用電子", y: 30 },
-        { id: 4, name: "傳產", y: 40 },
+        { id: 1, name: "提拉米蘇", y: 14 },
+        { id: 2, name: "檸檬塔", y: 22 },
+        { id: 3, name: "泡芙", y: 30 },
+        { id: 4, name: "馬卡龍", y: 40 },
       ],
       idNumber: 5,
     };

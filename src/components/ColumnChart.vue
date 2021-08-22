@@ -6,8 +6,8 @@
       <template #header>
         <!-- {{ "操作面板" }} -->
       <b-row>
-        <b-col cols="2"><b-form-input v-model="chartOptions.title.text"></b-form-input></b-col>
-        <b-col cols="2"><b-form-input v-model="chartOptions.yAxis.title.text"></b-form-input></b-col>
+        <b-col cols="2"><b-form-input v-model="chartOptions.title.text" placeholder="圖表標題"></b-form-input></b-col>
+        <b-col cols="2"><b-form-input v-model="chartOptions.yAxis.title.text" placeholder="y軸說明"></b-form-input></b-col>
         <b-col cols="8" class="d-flex justify-content-end">
         <b-button variant="primary" size="sm" @click="addItem()" style="margin-right: 10px;">新增1行</b-button>  
         <b-button variant="danger" size="sm" @click="deleteItem()">刪除1行</b-button>
@@ -15,8 +15,15 @@
         </b-row>
       </template>
       <template #footer>
-        <b-button variant="primary" size="sm" @click="addRow()" style="margin-right: 10px">新增1列</b-button>
-        <b-button variant="danger" size="sm" @click="deleteRow()">刪除1列</b-button>
+        <b-row>
+          <b-col cols="4">
+            <b-button variant="primary" size="sm" @click="addRow()" style="margin-right: 10px">新增1列</b-button>
+            <b-button variant="danger" size="sm" @click="deleteRow()">刪除1列</b-button>
+          </b-col>
+          <b-col cols="8" class="d-flex justify-content-end">
+            <b-button variant="dark" size="sm" @click="deleteAll()">全部清除</b-button>
+          </b-col>
+        </b-row>
       </template>
       <b-row>
         <b-col cols="2"></b-col>
@@ -154,6 +161,14 @@ export default {
       const chartWidth = this.getExportChartWidth(chartType);
       this.displayChart = this.getChart(this.chartOptions, chartWidth);
     },
+    deleteAll() {
+      this.chartOptions.series = [];
+      this.chartOptions.xAxis.categories = [];
+      this.chartOptions.title.text = "";
+      this.chartOptions.yAxis.title.text = "";
+      this.addItem();
+      this.addRow();
+    }
   },
 };
 </script>
